@@ -1,0 +1,71 @@
+Start the Node.js Security Tutorial
+
+
+Secure Coding Style
+
+Rule 1: Don't use eval
+    Eval can open up your application for code injection attacks.
+
+Rule 2: Always use strict mode
+    With 'use strict' you can opt in to use a restricted "variant" of JavaScript.
+    
+    'use strict'  
+    delete Object.prototype 
+    // TypeError
+    var obj = {  
+        a: 1, 
+        a: 2 
+    } 
+    // syntax error
+
+Rule 3: Handle errors carefully
+
+Rule 4: Do a static analysis of your codebase
+    *Running Your Services in Production Securely
+
+Rule 5: Don't run your processes with superuser rights
+
+Rule 6: Set up the obligatory HTTP headers
+    *Strict-Transport-Security enforces secure (HTTP over SSL/TLS) connections to the server
+    *X-Frame-Options provides clickjacking protection
+    *X-XSS-Protection enables the Cross-site scripting (XSS) filter built into most recent web browsers
+    *X-Content-Type-Options prevents browsers from MIME-sniffing a response away from the declared content-type
+    *Content-Security-Policy prevents a wide range of attacks, including Cross-site scripting and other cross-site injections
+
+    In Node.js it is easy to set these using the Helmet module:
+    var express = require('express')
+    var helmet = require('helmet')
+    var app = express()
+    app.use(helmet())
+
+Rule 7: Do proper session management
+
+Rule 8: Set cookie scope
+    In Node.js you can easily create this cookie using the cookies package.
+        var cookieSession = require('cookie-session')
+        var express = require('express')
+        var app = express()
+        app.use(cookieSession({
+            name: 'session',
+            keys: [
+                process.env.COOKIE_KEY1,
+                process.env.COOKIE_KEY2
+            ]
+        }))
+        app.use(function (req, res, next) {
+            var n = req.session.views || 0
+            req.session.views = n++
+            res.end(n + ' views')
+        })
+        app.listen(3000)    
+
+Rule 9: Look for vulnerabilities with Retire.js
+    npm install -g retire
+
+Rule 10: Audit your modules with the Node Security Platform CLI
+    npm install nsp --global
+    // #From inside your project directory
+    nsp check
+
+
+
