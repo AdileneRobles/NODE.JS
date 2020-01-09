@@ -1,0 +1,30 @@
+{
+  "name": "trip-to-mars",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "express": "git+https://github.com/strongloop/express.git",
+    "hello-mars": "gist:58e5dfc62489a5a288de",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "jshint": "^2.7.0",
+    "karma": "^4.4.1",
+    "underscore": "^1.8.2"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "author": "Adilene Robles",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeeames/trip-to-mars-typical.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joeeames/trip-to-mars-typical/issues"
+  },
+  "homepage": "https://github.com/joeeames/trip-to-mars-typical#readme",
+  "description": ""
+}
